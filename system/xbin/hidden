@@ -41,6 +41,7 @@ set -x 2>$VERLOG
 # > You can add functions, variables & etc.
 # > Rather than editing the default vars above.
 
+
 backup(){
   touch $MODDIR/settings.bak
   for i in global secure system; do
@@ -66,6 +67,7 @@ EOF
 exit
 }
 
+
 list_settings(){
   [ "$noGUI" ] && $(settings list $1 && exit $1)
   for i in $namespace; do
@@ -74,6 +76,7 @@ list_settings(){
     echo "$arg"
   done
 }
+
 
 reset_setting_GUI(){
   clear
@@ -96,6 +99,7 @@ reset_setting_GUI(){
        settings put "$setting" "$arg";;
   esac
 }
+
 
 get_setting(){
   for i in $namespace; do
@@ -125,6 +129,7 @@ get_setting_GUI(){
        get_setting $choice;;
   esac
 }
+
 
 modify_setting(){
   for i in $namespace; do
@@ -158,6 +163,7 @@ modify_setting_GUI(){
   esac
 }
 
+
 menu_namespace(){
   case "$1" in
     system|System) namespace=$1
@@ -188,6 +194,7 @@ menu_namespace(){
   esac
 }
 
+
 menu(){
   mod_head
   echo ""
@@ -214,6 +221,7 @@ menu(){
   esac
 }
 
+
 noGUI=
 namespace="
 system
@@ -221,7 +229,9 @@ secure
 global
 "
 
+
 [ ! -f $MODDIR/settings.bak ] && backup
+
 
 case "$1" in
   -m) shift
@@ -244,5 +254,8 @@ case "$1" in
   -h|--help) help_me;;
 esac
 
+
 menu
+
+
 exit $?
